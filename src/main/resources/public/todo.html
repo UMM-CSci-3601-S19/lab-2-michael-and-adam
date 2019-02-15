@@ -23,18 +23,18 @@
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 <!--This will probably be the template we use to implement our buttons. Add them as you add features.-->
-<!--<label for="age">age:</label><input id="age" type="text" name="age">-->
-<!--<button type="button" id="getUsersByAge"> get users by age</button>-->
+<label for="owner">owner:</label><input id="owner" type="text" name="owner">
+<button type="button" id="getUsersByAge"> get users by age</button>
 
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
 
     var element = document.getElementById('getAll');
-    element.addEventListener("click", getAllUsers, true);
+    element.addEventListener("click", getAllTodos, true);
 
-    element = document.getElementById('getUsersByAge');
-    element.addEventListener("click", getAllUsersByAge, true);
+//    element = document.getElementById('getUsersByAge');
+//    element.addEventListener("click", getAllUsersByAge, true);
   }
 </script>
 </body>
