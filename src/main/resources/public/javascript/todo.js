@@ -1,12 +1,28 @@
+// Why do we use the `var getAllTodos = function()` syntax
+// for the first definition, and the named function syntax
+// for the second definition?
+
+/**
+ * Function to get all the todos!
+ */
 function getAllTodos() {
-  console.log("Getting all owners.");
+  console.log("Getting all the todos.");
 
   var HttpThingy = new HttpClient();
   HttpThingy.get("/api/todos", function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
-//borrowed from users.js
+
+function getAllTodosByOwner() {
+  console.log("Getting all the todos.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.

@@ -24,7 +24,7 @@
 
 <!--This will probably be the template we use to implement our buttons. Add them as you add features.-->
 <label for="owner">owner:</label><input id="owner" type="text" name="owner">
-<button type="button" id="getUsersByAge"> get users by age</button>
+<button type="button" id="getTodosByOwner"> get users by owner</button>
 
 <script>
   window.onload = function () {
@@ -33,8 +33,8 @@
     var element = document.getElementById('getAll');
     element.addEventListener("click", getAllTodos, true);
 
-//    element = document.getElementById('getUsersByAge');
-//    element.addEventListener("click", getAllUsersByAge, true);
+    element = document.getElementById('getTodosByOwner');
+    element.addEventListener("click", getAllTodosByOwner, true);
   }
 </script>
 </body>
