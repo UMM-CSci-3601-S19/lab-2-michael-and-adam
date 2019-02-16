@@ -46,10 +46,10 @@ public class Database {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
-    // Filter age if defined
-    if (queryParams.containsKey("category")) {
-      String targetCategory = queryParams.get("category")[0];
-      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
+    // Filter owner if defined
+    if (queryParams.containsKey("owner")) {
+      String targetOwner = queryParams.get("owner")[0];
+      filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
     // Process other query parameters here...
 
@@ -60,12 +60,12 @@ public class Database {
    * Get an array of all the todos having the target age.
    *
    * @param todos     the list of todos to filter by age
-   * @param targetCategory the target age to look for
+   * @param targetOwner the target age to look for
    * @return an array of all the todos from the given list that have
    * the target age
    */
-  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
-    return Arrays.stream(todos).filter(x -> x.category == targetCategory).toArray(Todo[]::new);
+  public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
+    return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
   }
 
 }

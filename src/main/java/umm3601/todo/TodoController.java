@@ -45,7 +45,7 @@ public class TodoController {
     String id = req.params("id");
     Todo todo = database.getTodo(id);
     if (todo != null) {
-      return buildSuccessJsonResponse("user", gson.toJsonTree(todo));
+      return buildSuccessJsonResponse("owner", gson.toJsonTree(todo));
     } else {
       String message = "User with ID " + id + " wasn't found.";
       return buildFailJsonResponse("id", message);
@@ -62,7 +62,7 @@ public class TodoController {
   public JsonObject getTodos(Request req, Response res) {
     res.type("application/json");
     Todo[] todos = database.listTodos(req.queryMap().toMap());
-    return buildSuccessJsonResponse("users", gson.toJsonTree(todos));
+    return buildSuccessJsonResponse("userstodo", gson.toJsonTree(todos));
   }
 
 }
