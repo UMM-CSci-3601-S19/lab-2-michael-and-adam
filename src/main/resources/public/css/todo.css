@@ -8,3 +8,8 @@ body {
   padding: 13px;
 }
 
+#getBlancheTodos{
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}
