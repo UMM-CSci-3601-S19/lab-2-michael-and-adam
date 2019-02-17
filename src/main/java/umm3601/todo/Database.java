@@ -58,6 +58,11 @@ public class Database {
       filteredTodos = filterWithLimits(filteredTodos, targetLimit);
     }
 
+    if (queryParams.containsKey("category")) {
+      String targetCategory = queryParams.get("category")[0];
+      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
+    }
+
     return filteredTodos;
   }
 
@@ -75,6 +80,10 @@ public class Database {
 
   public Todo[] filterWithLimits(Todo[] todos, int limitNum) {
     return Arrays.stream(todos).limit(limitNum).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
+    return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
 
 }

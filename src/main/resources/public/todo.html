@@ -23,13 +23,24 @@
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 <!--This will probably be the template we use to implement our buttons. Add them as you add features.-->
-<label for="owner">owner:</label><input id="owner" type="text" name="owner">
-<button type="button" id="getTodosByOwner">get todos by owner</button>
+<div>
+  <label for="owner">owner:</label><input id="owner" type="text" name="owner">
+  <button type="button" id="getTodosByOwner">get todos by owner</button>
+</div>
 
-<label for="limit">limit:</label><input id="limit" type="text" name="limit">
-<button type="button" id="getLimitedTodos">get todos with limit</button>
+<div>
+  <label for="limit">limit:</label><input id="limit" type="text" name="limit">
+  <button type="button" id="getLimitedTodos">get todos with limit</button>
+</div>
+
+<div>
+  <label for="category">category:</label><input id="category" type="text" name="category">
+  <button type="button" id="getTodosByCategory">get todos by category</button>
+</div>
 
 <button type="button" id="getBlancheTodos">Retrieve Blanche ToDos</button>
+
+<button type="button" id="getGroceryTodos">Retrieve Grocery ToDos</button>
 
 <script>
   window.onload = function () {
@@ -46,6 +57,12 @@
 
     element = document.getElementById('getLimitedTodos');
     element.addEventListener("click", getlimitedTodos, true);
+
+    element = document.getElementById('getGroceryTodos');
+    element.addEventListener("click", getAllGroceryTodos, true);
+
+    element = document.getElementById('getTodosByCategory');
+    element.addEventListener("click", getAllTodosByCategory, true);
 
   }
 </script>

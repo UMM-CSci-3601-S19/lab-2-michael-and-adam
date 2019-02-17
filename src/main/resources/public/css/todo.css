@@ -13,3 +13,9 @@ body {
   margin: 1rem auto;
   padding: 0.5rem;
 }
+
+#getGroceryTodos{
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}
