@@ -59,6 +59,15 @@ function getAllTodosByCategory() {
   });
 }
 
+function getTodoStatus() {
+  console.log("Getting all the todos by status.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?status=" + document.getElementById("status1").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.
