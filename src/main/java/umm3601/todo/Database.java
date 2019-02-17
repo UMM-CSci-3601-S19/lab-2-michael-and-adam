@@ -63,6 +63,16 @@ public class Database {
       filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
 
+    if (queryParams.containsKey("status")) {
+      String targetStatus = queryParams.get("status")[0];
+      filteredTodos = filterTodosByStatusComplete(filteredTodos);
+    }
+
+    if (queryParams.containsKey("status")) {
+      String targetStatus = queryParams.get("status")[0];
+      filteredTodos = filterTodosByStatusIncomplete(filteredTodos);
+    }
+
     return filteredTodos;
   }
 
@@ -84,6 +94,14 @@ public class Database {
 
   public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
     return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByStatusComplete(Todo[] todos) {
+    return Arrays.stream(todos).filter(x -> x.status == true).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByStatusIncomplete(Todo[] todos) {
+    return Arrays.stream(todos).filter(x -> x.status == false).toArray(Todo[]::new);
   }
 
 }

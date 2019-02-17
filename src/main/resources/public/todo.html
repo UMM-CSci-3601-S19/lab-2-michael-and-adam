@@ -40,8 +40,8 @@
 
 <div>
   <label>status:</label>
-    <input id="status1" type="radio" name="status" value="complete"> Complete
-    <input id="status2" type="radio" name="status" value="incomplete"> Incomplete
+    <input id="complete" type="radio" name="status" value="complete"> Complete
+    <input id="incomplete" type="radio" name="status" value="incomplete"> Incomplete
   <button type="button" id="getTodoStatus">get todos by status</button>
 </div>
 
@@ -70,6 +70,9 @@
 
     element = document.getElementById('getTodosByCategory');
     element.addEventListener("click", getAllTodosByCategory, true);
+
+    element = document.getElementById('getTodosStatus');
+    element.addEventListener("click", getTodoStatus, true);
 
   }
 </script>

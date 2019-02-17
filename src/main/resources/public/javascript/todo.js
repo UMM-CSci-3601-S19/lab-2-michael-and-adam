@@ -62,10 +62,18 @@ function getAllTodosByCategory() {
 function getTodoStatus() {
   console.log("Getting all the todos by status.");
 
-  var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?status=" + document.getElementById("status1").value, function (returned_json) {
-    document.getElementById('jsonDump').innerHTML = returned_json;
-  });
+  if(document.getElementById("complete").checked) {
+    var HttpThingy = new HttpClient();
+    HttpThingy.get("/api/todos?status=complete", function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  } else {
+    var HttpThingy = new HttpClient();
+    HttpThingy.get("/api/todos?status=incomplete", function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  }
+
 }
 
 /**
