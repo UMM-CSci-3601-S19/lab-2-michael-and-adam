@@ -32,6 +32,15 @@ function getAllBlancheTodos() {
   });
 }
 
+function getlimitedTodos() {
+  console.log("Getting limited number of todos");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?limit=" + document.getElementById("limit").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.

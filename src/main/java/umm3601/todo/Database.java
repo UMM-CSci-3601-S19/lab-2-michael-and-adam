@@ -46,12 +46,17 @@ public class Database {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
-    // Filter owner if defined
+//     Filter owner if defined
     if (queryParams.containsKey("owner")) {
       String targetOwner = queryParams.get("owner")[0];
+//      int targetLimit= Integer.parseInt(queryParams.get("limit")[0]);
       filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
-    // Process other query parameters here...
+
+    if (queryParams.containsKey("limit")) {
+      int targetLimit= Integer.parseInt(queryParams.get("limit")[0]);
+      filteredTodos = filterWithLimits(filteredTodos, targetLimit);
+    }
 
     return filteredTodos;
   }
@@ -66,6 +71,10 @@ public class Database {
    */
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
     return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterWithLimits(Todo[] todos, int limitNum) {
+    return Arrays.stream(todos).limit(limitNum).toArray(Todo[]::new);
   }
 
 }
