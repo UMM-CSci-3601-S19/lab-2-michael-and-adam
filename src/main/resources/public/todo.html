@@ -24,7 +24,11 @@
 
 <!--This will probably be the template we use to implement our buttons. Add them as you add features.-->
 <label for="owner">owner:</label><input id="owner" type="text" name="owner">
-<button type="button" id="getTodosByOwner">get users by owner</button>
+<button type="button" id="getTodosByOwner">get todos by owner</button>
+
+<label for="limit">limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="getLimitedTodos">get todos with limit</button>
+
 <button type="button" id="getBlancheTodos">Retrieve Blanche ToDos</button>
 
 <script>
@@ -39,6 +43,9 @@
 
     element = document.getElementById('getBlancheTodos');
     element.addEventListener("click", getAllBlancheTodos, true);
+
+    element = document.getElementById('getLimitedTodos');
+    element.addEventListener("click", getlimitedTodos, true);
 
   }
 </script>
