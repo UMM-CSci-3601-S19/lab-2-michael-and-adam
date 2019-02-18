@@ -65,12 +65,13 @@ public class Database {
 
     if (queryParams.containsKey("status")) {
       String targetStatus = queryParams.get("status")[0];
-      filteredTodos = filterTodosByStatusComplete(filteredTodos);
-    }
+      System.out.println(targetStatus);
 
-    if (queryParams.containsKey("status")) {
-      String targetStatus = queryParams.get("status")[0];
-      filteredTodos = filterTodosByStatusIncomplete(filteredTodos);
+      if (targetStatus.equals("incomplete")){
+        filteredTodos = filterTodosByStatusIncomplete(filteredTodos);
+      } else if (targetStatus.equals("complete")) {
+        filteredTodos = filterTodosByStatusComplete(filteredTodos);
+      }
     }
 
     return filteredTodos;
@@ -97,11 +98,11 @@ public class Database {
   }
 
   public Todo[] filterTodosByStatusComplete(Todo[] todos) {
-    return Arrays.stream(todos).filter(x -> x.status == true).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.status = true).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByStatusIncomplete(Todo[] todos) {
-    return Arrays.stream(todos).filter(x -> x.status == false).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.status = false).toArray(Todo[]::new);
   }
 
 }
