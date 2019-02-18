@@ -69,14 +69,15 @@ function getAllTodosByBody() {
 }
 
 function getStatusOfTodos() {
-  console.log("Getting all the todos by status.");
 
   if (document.getElementById("incomplete").checked) {
+    console.log("Getting all incomplete statuses.");
     var HttpThingy = new HttpClient();
     HttpThingy.get("/api/todos?status=incomplete", function (returned_json) {
       document.getElementById('jsonDump').innerHTML = returned_json;
     });
   } else if (document.getElementById("complete").checked)  {
+    console.log("Getting all complete statuses.");
     var HttpThingy = new HttpClient();
     HttpThingy.get("/api/todos?status=complete", function (returned_json) {
       document.getElementById('jsonDump').innerHTML = returned_json;
@@ -84,7 +85,7 @@ function getStatusOfTodos() {
   } else {
 
   }
-
+}
 
 // function getStatusOfTodos() {
 //   console.log("Getting all the todos by status.");
@@ -93,8 +94,8 @@ function getStatusOfTodos() {
 //   HttpThingy.get("/api/todos?status=complete", function (returned_json) {
 //     document.getElementById('jsonDump').innerHTML = returned_json;
 //   });
-
-}
+//
+// }
 
 
 /**
