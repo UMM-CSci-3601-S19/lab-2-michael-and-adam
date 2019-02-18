@@ -1,4 +1,4 @@
-<!--Most of this file was borrowed from users.html-->
+https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Most of this file was borrowed from users.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +45,11 @@
   <button type="button" id="getTodoStatus">get todos by status</button>
 </div>
 
+<div>
+  <label for="contains">body contains:</label><input id="contains" type="text" name="body">
+  <button type="button" id="getTodosByBody">get todos by body</button>
+</div>
+
 <button type="button" id="getBlancheTodos">Retrieve Blanche ToDos</button>
 
 <button type="button" id="getGroceryTodos">Retrieve Grocery ToDos</button>
@@ -73,6 +78,9 @@
 
     element = document.getElementById('getTodoStatus');
     element.addEventListener("click", getStatusOfTodos, true);
+
+    element = document.getElementById('getTodosByBody');
+    element.addEventListener("click", getAllTodosByBody, true);
 
   }
 </script>
