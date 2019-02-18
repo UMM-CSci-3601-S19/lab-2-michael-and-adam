@@ -59,14 +59,43 @@ function getAllTodosByCategory() {
   });
 }
 
-function getTodoStatus() {
-  console.log("Getting all the todos by status.");
+function getAllTodosByBody() {
+  console.log("Getting all the todos from the body.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?status=" + document.getElementById("status1").value, function (returned_json) {
+  HttpThingy.get("/api/todos?contains=" + document.getElementById("contains").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
+
+function getStatusOfTodos() {
+  console.log("Getting all the todos by status.");
+
+  if (document.getElementById("incomplete").checked) {
+    var HttpThingy = new HttpClient();
+    HttpThingy.get("/api/todos?status=incomplete", function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  } else if (document.getElementById("complete").checked)  {
+    var HttpThingy = new HttpClient();
+    HttpThingy.get("/api/todos?status=complete", function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  } else {
+
+  }
+
+
+// function getStatusOfTodos() {
+//   console.log("Getting all the todos by status.");
+//
+//   var HttpThingy = new HttpClient();
+//   HttpThingy.get("/api/todos?status=complete", function (returned_json) {
+//     document.getElementById('jsonDump').innerHTML = returned_json;
+//   });
+
+}
+
 
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
