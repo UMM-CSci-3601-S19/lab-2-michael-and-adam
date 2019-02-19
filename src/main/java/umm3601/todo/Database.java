@@ -78,6 +78,11 @@ public class Database {
       filteredTodos = filterTodosByBody(filteredTodos, targetBody);
     }
 
+    if (queryParams.containsKey("_id")) {
+      String targetId = queryParams.get("_id")[0];
+      filteredTodos = filterTodosById(filteredTodos, targetId);
+    }
+
     if(queryParams.containsKey("orderBy")) {
       String targetOrder = queryParams.get("body")[0];
       if (targetOrder.equals("body")) {
@@ -142,4 +147,7 @@ public class Database {
     return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
   }
 
+  public Todo[] filterTodosById(Todo[] todos, String targetId) {
+    return Arrays.stream(todos).filter(x -> x._id.equals(targetId)).toArray(Todo[]::new);
+  }
 }

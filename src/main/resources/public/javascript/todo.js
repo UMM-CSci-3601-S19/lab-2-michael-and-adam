@@ -68,6 +68,15 @@ function getAllTodosByBody() {
   });
 }
 
+function getAllTodosById() {
+  console.log("Getting all the todos by category.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?_id=" + document.getElementById("_id").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function getOrderedTodos() {
   console.log("Getting all the todos in order by category");
 

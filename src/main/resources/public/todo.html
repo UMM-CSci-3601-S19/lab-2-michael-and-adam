@@ -9,8 +9,6 @@
 </head>
 <body>
 
-<p>https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git</p>
-
 <a href="/">HOME</a>
 <a href="/about">ABOUT</a>
 <a href="/users">USERS</a>
@@ -59,6 +57,11 @@
 </div>
 
 <div>
+  <label for="_id">Id:</label><input id="_id" type="text" name="_id">
+  <button type="button" id="getTodosById">get todos by Id</button>
+</div>
+
+<div>
   <label for="orderBy">orderBy:</label><input id="orderBy" type="text" name="orderBy">
   <button type="button" id="getOrderedTodos">get todos by in order by category</button>
 </div>
@@ -92,8 +95,8 @@
     element = document.getElementById('getTodoStatus');
     element.addEventListener("click", getStatusOfTodos, true);
 
-    element = document.getElementById('getTodosByBody');
-    element.addEventListener("click", getAllTodosByBody, true);
+    element = document.getElementById('getTodosById');
+    element.addEventListener("click", getAllTodosById, true);
 
     element = document.getElementById('getOrderedTodos');
     element.addEventListener("click", getOrderedTodos, true);
