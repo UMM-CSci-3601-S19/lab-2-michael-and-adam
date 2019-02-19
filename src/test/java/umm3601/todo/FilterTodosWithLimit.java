@@ -35,4 +35,13 @@ public class FilterTodosWithLimit {
     Todo[] twentyTodos = db.filterWithLimits(allTodos, 20);
     assertEquals("Incorrect number of todos", 20, twentyTodos.length);
   }
+
+  @Test
+  public void higherLimitThanTodosExist() throws IOException {
+    Database db = new Database("src/main/data/todos.json");
+    Todo[] allTodos = db.listTodos(new HashMap<>());
+
+    Todo[] infinity = db.filterWithLimits(allTodos, 2000);
+    assertEquals("Incorrect number of todos", 300, infinity.length);
+  }
 }

@@ -19,24 +19,20 @@ public class FilterTodosByOwnerFromDB {
     Database db = new Database("src/main/data/todos.json");
     Todo[] allTodos = db.listTodos(new HashMap<>());
 
-    Todo[] age27Users = db.filterTodosByOwner(allTodos, "Blanche");
-    assertEquals("Incorrect number of users with age 27", 43, age27Users.length);
+    Todo[] ownerBlanche = db.filterTodosByOwner(allTodos, "Blanche");
+    assertEquals("Incorrect number of owner Blanche todos", 43, ownerBlanche.length);
 
-    Todo[] age33Users = db.filterTodosByOwner(allTodos, "Fry");
-    assertEquals("Incorrect number of users with age 33", 61, age33Users.length);
+    Todo[] ownerFry = db.filterTodosByOwner(allTodos, "Fry");
+    assertEquals("Incorrect number of owner Fry todos", 61, ownerFry.length);
   }
 
+
   @Test
-  public void listUsersWithAgeFilter() throws IOException {
+  public void filterNonExistentOwner() throws IOException {
     Database db = new Database("src/main/data/todos.json");
-    Map<String, String[]> queryParams = new HashMap<>();
+    Todo[] allTodos = db.listTodos(new HashMap<>());
 
-    queryParams.put("owner", new String[]{"Blanche"});
-    Todo[] age27Users = db.listTodos(queryParams);
-    assertEquals("Incorrect number of users with age 27", 43, age27Users.length);
-
-    queryParams.put("owner", new String[]{"Fry"});
-    Todo[] age33Users = db.listTodos(queryParams);
-    assertEquals("Incorrect number of users with age 33", 61, age33Users.length);
+    Todo[] nonOwner = db.filterTodosByOwner(allTodos, "ZIPITYDOODAHBORRISDOTCOM");
+    assertEquals("Incorrect number of fake owners", 0, nonOwner.length);
   }
 }

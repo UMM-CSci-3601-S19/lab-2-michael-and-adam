@@ -59,7 +59,6 @@ public class Database {
 
     if (queryParams.containsKey("status")) {
       String targetStatus = queryParams.get("status")[0];
-      System.out.println(targetStatus);
 
       if (targetStatus.equals("incomplete")){
         filteredTodos = filterTodosByStatusIncomplete(filteredTodos);
