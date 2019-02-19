@@ -126,9 +126,6 @@ public class Database {
     return Arrays.stream(todos).filter(x -> x.body.contains(targetBody)).toArray(Todo[]::new);
   }
 
-
-
-
   public Todo[] sortByBody(Todo[] todos, String targetOrder) {
     return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).sorted().toArray(Todo[]::new);
   }
