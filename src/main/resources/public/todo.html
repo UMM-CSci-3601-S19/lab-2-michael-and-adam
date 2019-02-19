@@ -22,7 +22,6 @@
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
-<!--This will probably be the template we use to implement our buttons. Add them as you add features.-->
 <div>
   <label for="owner">owner:</label><input id="owner" type="text" name="owner">
   <button type="button" id="getTodosByOwner">get todos by their owner</button>
@@ -100,6 +99,9 @@
 
     element = document.getElementById('getOrderedTodos');
     element.addEventListener("click", getOrderedTodos, true);
+
+    element = document.getElementById('getTodosByBody');
+    element.addEventListener("click", getTodosByBody, true);
 
   }
 </script>

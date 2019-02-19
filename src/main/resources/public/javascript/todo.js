@@ -1,6 +1,4 @@
-// Why do we use the `var getAllTodos = function()` syntax
-// for the first definition, and the named function syntax
-// for the second definition?
+//code borrowed from users.js
 
 /**
  * Function to get all the todos!
@@ -59,7 +57,7 @@ function getAllTodosByCategory() {
   });
 }
 
-function getAllTodosByBody() {
+function getTodosByBody() {
   console.log("Getting all the todos from the body.");
 
   var HttpThingy = new HttpClient();
@@ -104,17 +102,6 @@ function getStatusOfTodos() {
 
   }
 }
-
-// function getStatusOfTodos() {
-//   console.log("Getting all the todos by status.");
-//
-//   var HttpThingy = new HttpClient();
-//   HttpThingy.get("/api/todos?status=complete", function (returned_json) {
-//     document.getElementById('jsonDump').innerHTML = returned_json;
-//   });
-//
-// }
-
 
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
