@@ -56,6 +56,11 @@ https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Mo
   <button type="button" id="getTodosByBody">get todos by body</button>
 </div>
 
+<div>
+  <label for="_id">Id:</label><input id="_id" type="text" name="_id">
+  <button type="button" id="getTodosById">get todos by Id</button>
+</div>
+
 <button type="button" id="getBlancheTodos">Retrieve Blanche ToDos</button>
 
 <button type="button" id="getGroceryTodos">Retrieve Grocery ToDos</button>
@@ -85,8 +90,8 @@ https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Mo
     element = document.getElementById('getTodoStatus');
     element.addEventListener("click", getStatusOfTodos, true);
 
-    element = document.getElementById('getTodosByBody');
-    element.addEventListener("click", getAllTodosByBody, true);
+    element = document.getElementById('getTodosById');
+    element.addEventListener("click", getAllTodosById, true);
 
   }
 </script>
