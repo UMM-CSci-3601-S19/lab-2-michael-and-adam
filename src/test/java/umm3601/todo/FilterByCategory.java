@@ -50,5 +50,14 @@ public class FilterByCategory {
     assertEquals("Incorrect number of groceries todos", 76, groceries.length);
   }
 
+  @Test
+  public void filterMonsterHouse() throws IOException {
+    Database db = new Database("src/main/data/todos.json");
+    Todo[] allTodos = db.listTodos(new HashMap<>());
+
+    Todo[] monsterHouse = db.filterTodosByCategory(allTodos, "monster house");
+    assertEquals("Incorrect number of monster house", 0, monsterHouse.length);
+  }
+
 }
 
