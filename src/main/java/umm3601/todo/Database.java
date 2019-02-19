@@ -1,3 +1,4 @@
+//code borrowed from user's Database.java
 package umm3601.todo;
 
 import com.google.gson.Gson;
@@ -46,16 +47,9 @@ public class Database {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
-//     Filter owner if defined
     if (queryParams.containsKey("owner")) {
       String targetOwner = queryParams.get("owner")[0];
-//      int targetLimit= Integer.parseInt(queryParams.get("limit")[0]);
       filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
-    }
-
-    if (queryParams.containsKey("limit")) {
-      int targetLimit= Integer.parseInt(queryParams.get("limit")[0]);
-      filteredTodos = filterWithLimits(filteredTodos, targetLimit);
     }
 
     if (queryParams.containsKey("category")) {
@@ -65,6 +59,7 @@ public class Database {
 
     if (queryParams.containsKey("status")) {
       String targetStatus = queryParams.get("status")[0];
+      System.out.println(targetStatus);
 
       if (targetStatus.equals("incomplete")){
         filteredTodos = filterTodosByStatusIncomplete(filteredTodos);
@@ -83,18 +78,34 @@ public class Database {
       filteredTodos = filterTodosById(filteredTodos, targetId);
     }
 
-    if(queryParams.containsKey("orderBy")) {
-      String targetOrder = queryParams.get("body")[0];
-      if (targetOrder.equals("body")) {
-        filteredTodos = sortByBody(filteredTodos, targetOrder);
-      } else if (targetOrder.equals("status")) {
-        filteredTodos = sortByStatus(filteredTodos, targetOrder);
-      } else if (targetOrder.equals("category")) {
-        filteredTodos = sortByCategory(filteredTodos, targetOrder);
-      } else if (targetOrder.equals("owner")) {
-        filteredTodos = sortByOwner(filteredTodos, targetOrder);
-      }
+//  In our attempt to support an arbitrary combination of search parameters, we ran into considerable trouble with any
+//    search that used limit. The returned amount of items was at MAX the limit, but often less were returned. This was
+//    solved by reordering the if statements, especially putting limit at the end. Owner + Limit worked as intended, the
+//    way we originally had the ifs ordered, because owner was the first if statement before limit, but all the other
+//    if statements came after the limit if statement. When making the limit if statement last, the number of returned
+//    todos was correct, as the limiting number was applied only after all relevant fields were found.
+    if (queryParams.containsKey("limit")) {
+      int targetLimit= Integer.parseInt(queryParams.get("limit")[0]);
+      filteredTodos = filterWithLimits(filteredTodos, targetLimit);
     }
+
+//    We attempted to set up orderBy. There are calls to sortBy different methods below too. We commented it all out
+//    because we ran out of time to properly implement the ordering methods, but we wanted to demonstrate that we
+//    put some work into it.
+
+//    if(queryParams.containsKey("orderBy")) {
+//      String targetOrder = queryParams.get("orderBy")[0];
+//      System.out.println(targetOrder);
+//      if (targetOrder.equals("body")) {
+//        filteredTodos = sortByBody(filteredTodos, targetOrder);
+//      } else if (targetOrder.equals("status")) {
+//        filteredTodos = sortByStatus(filteredTodos, targetOrder);
+//      } else if (targetOrder.equals("category")) {
+//        filteredTodos = sortByCategory(filteredTodos, targetOrder);
+//      } else if (targetOrder.equals("owner")) {
+//        filteredTodos = sortByOwner(filteredTodos, targetOrder);
+//      }
+//    }
 
     return filteredTodos;
   }
@@ -131,22 +142,33 @@ public class Database {
     return Arrays.stream(todos).filter(x -> x.body.contains(targetBody)).toArray(Todo[]::new);
   }
 
-  public Todo[] sortByBody(Todo[] todos, String targetOrder) {
-    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).sorted().toArray(Todo[]::new);
-  }
+//=============================================================================================
 
-  public Todo[] sortByStatus(Todo[] todos, String targetOrder) {
-    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
-  }
+//  public Todo[] sortByBody(Todo[] todos, String targetOrder) {
+//    return Arrays.stream(todos)
+//      .sorted(Comparator.comparing(a -> x.body))
+//      .toArray(Todo[]::new);
+//  }
+//
+//  public Todo[] sortByStatus(Todo[] todos, String targetOrder) {
+//    return Arrays.stream(todos)
+//      .sorted(Comparator.comparing(a -> x.body))
+//      .toArray(Todo[]::new);
+//  }
+//
+//  public Todo[] sortByCategory(Todo[] todos, String targetOrder) {
+//    return Arrays.stream(todos)
+//      .sorted(Comparator.comparing(a -> x.body))
+//      .toArray(Todo[]::new);
+//  }
+//
+//  public Todo[] sortByOwner(Todo[] todos, String targetOrder) {
+//    return Arrays.stream(todos)
+//      .sorted(Comparator.comparing(a -> x.body))
+//      .toArray(Todo[]::new);
+//  }
 
-  public Todo[] sortByCategory(Todo[] todos, String targetOrder) {
-    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
-  }
-
-  public Todo[] sortByOwner(Todo[] todos, String targetOrder) {
-    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
-  }
-
+//=============================================================================================
   public Todo[] filterTodosById(Todo[] todos, String targetId) {
     return Arrays.stream(todos).filter(x -> x._id.equals(targetId)).toArray(Todo[]::new);
   }

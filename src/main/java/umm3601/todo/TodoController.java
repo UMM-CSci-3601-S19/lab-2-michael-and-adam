@@ -1,3 +1,5 @@
+//code borrowed from userController
+
 package umm3601.todo;
 
 import com.google.gson.Gson;
@@ -19,7 +21,7 @@ public class TodoController {
   private Database database;
 
   /**
-   * Construct a controller for users.
+   * Construct a controller for todo.
    * <p>
    * This loads the "database" of user info from a JSON file and
    * stores that internally so that (subsets of) users can be returned
@@ -33,7 +35,7 @@ public class TodoController {
   }
 
   /**
-   * Get the single user specified by the `id` parameter in the request.
+   * Get the single todo specified by the `id` parameter in the request.
    *
    * @param req the HTTP request
    * @param res the HTTP response
