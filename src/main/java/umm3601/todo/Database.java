@@ -65,7 +65,6 @@ public class Database {
 
     if (queryParams.containsKey("status")) {
       String targetStatus = queryParams.get("status")[0];
-      System.out.println(targetStatus);
 
       if (targetStatus.equals("incomplete")){
         filteredTodos = filterTodosByStatusIncomplete(filteredTodos);
@@ -77,6 +76,19 @@ public class Database {
     if (queryParams.containsKey("contains")) {
       String targetBody = queryParams.get("contains")[0];
       filteredTodos = filterTodosByBody(filteredTodos, targetBody);
+    }
+
+    if(queryParams.containsKey("orderBy")) {
+      String targetOrder = queryParams.get("body")[0];
+      if (targetOrder.equals("body")) {
+        filteredTodos = sortByBody(filteredTodos, targetOrder);
+      } else if (targetOrder.equals("status")) {
+        filteredTodos = sortByStatus(filteredTodos, targetOrder);
+      } else if (targetOrder.equals("category")) {
+        filteredTodos = sortByCategory(filteredTodos, targetOrder);
+      } else if (targetOrder.equals("owner")) {
+        filteredTodos = sortByOwner(filteredTodos, targetOrder);
+      }
     }
 
     return filteredTodos;
@@ -103,15 +115,34 @@ public class Database {
   }
 
   public Todo[] filterTodosByStatusComplete(Todo[] todos) {
-    return Arrays.stream(todos).filter(x -> x.status = true).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.status == true).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByStatusIncomplete(Todo[] todos) {
-    return Arrays.stream(todos).filter(x -> x.status = false).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.status == false).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByBody(Todo[] todos, String targetBody) {
     return Arrays.stream(todos).filter(x -> x.body.contains(targetBody)).toArray(Todo[]::new);
+  }
+
+
+
+
+  public Todo[] sortByBody(Todo[] todos, String targetOrder) {
+    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).sorted().toArray(Todo[]::new);
+  }
+
+  public Todo[] sortByStatus(Todo[] todos, String targetOrder) {
+    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
+  }
+
+  public Todo[] sortByCategory(Todo[] todos, String targetOrder) {
+    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
+  }
+
+  public Todo[] sortByOwner(Todo[] todos, String targetOrder) {
+    return Arrays.stream(todos).filter(x -> x.body.contains(targetOrder)).toArray(Todo[]::new);
   }
 
 }

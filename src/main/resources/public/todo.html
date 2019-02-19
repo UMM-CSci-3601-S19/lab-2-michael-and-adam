@@ -1,4 +1,4 @@
-https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Most of this file was borrowed from users.html-->
+<!--Most of this file was borrowed from users.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,8 @@ https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Mo
   <script type="text/javascript" src="javascript/todo.js"></script>
 </head>
 <body>
+
+<p>https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git</p>
 
 <a href="/">HOME</a>
 <a href="/about">ABOUT</a>
@@ -56,6 +58,11 @@ https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Mo
   <button type="button" id="getTodosByBody">get todos by body</button>
 </div>
 
+<div>
+  <label for="orderBy">orderBy:</label><input id="orderBy" type="text" name="orderBy">
+  <button type="button" id="getOrderedTodos">get todos by in order by category</button>
+</div>
+
 <button type="button" id="getBlancheTodos">Retrieve Blanche ToDos</button>
 
 <button type="button" id="getGroceryTodos">Retrieve Grocery ToDos</button>
@@ -87,6 +94,9 @@ https://github.com/UMM-CSci-3601-S19/intro-to-git-second-half-everyone.git<!--Mo
 
     element = document.getElementById('getTodosByBody');
     element.addEventListener("click", getAllTodosByBody, true);
+
+    element = document.getElementById('getOrderedTodos');
+    element.addEventListener("click", getOrderedTodos, true);
 
   }
 </script>

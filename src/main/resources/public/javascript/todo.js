@@ -68,6 +68,15 @@ function getAllTodosByBody() {
   });
 }
 
+function getOrderedTodos() {
+  console.log("Getting all the todos in order by category");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?orderBy=" + document.getElementById("orderBy").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function getStatusOfTodos() {
 
   if (document.getElementById("incomplete").checked) {
